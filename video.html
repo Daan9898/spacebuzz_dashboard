@@ -150,7 +150,7 @@
                             <div class="group" id="group1" ondrop="drop(event)" ondragover="allowDrop(event)">
                                 <h2 class="font-semibold text-lg mb-2">Group 1</h2>
                                 <!-- List of Devices in Group 1 -->
-                                <div class="devices flex flex-col gap-4 p-2">
+                                <div class="devices flex flex-col gap-2 p-2">
                                     <!-- Devices will be dropped here -->
                                 </div>
                             </div>  
@@ -597,7 +597,7 @@
             newGroup.appendChild(groupTitle);
 
             var devicesContainer = document.createElement('div');
-            devicesContainer.className = 'devices flex flex-col gap-4 p-2';
+            devicesContainer.className = 'devices flex flex-col gap-2 p-1';
             newGroup.appendChild(devicesContainer);
 
             document.getElementById('groupsContainer').appendChild(newGroup);
