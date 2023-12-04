@@ -64,7 +64,7 @@
             <div>
                 <ul>
                     <li class="mb-1">
-                        <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#">All Chairs</a>
+                        <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="index.html">All Chairs</a>
                     </li>
                     <li class="mb-1">
                         <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#">Dispay video</a>
@@ -107,15 +107,15 @@
                 <!-- Commands List -->
                 <div class="space-y-2" >
                     <!-- Dropdown Header -->
-                    <div class="flex items-center justify-between bg-blue-100 p-3 rounded cursor-pointer" onclick="toggleDropdown()">
+                    <div class="flex items-center justify-between bg-blue-100 p-3 rounded cursor-pointer" onclick="toggleDropdown('content-container-1', 'dropdownIcon-1')">
                         <span class="text-blue-700 font-medium">Group 1</span>
-                        <svg id="dropdownIcon" class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="dropdownIcon-1" class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </div>
 
                     <!-- Dropdown Content -->
-                    <div id="content-container" class="bg-purple-100 rounded hidden">
+                    <div id="content-container-1" class="bg-purple-100 rounded ">
                         <!-- message Item -->
                         <div class="flex items-center justify-between p-3">
                                 <!-- message Item -->
@@ -169,6 +169,76 @@
                         </div>
                     </div>        
                 </div>
+
+
+
+
+
+                <!-- Commands List -->
+                <div class="my-4 space-y-2" >
+                    <!-- Group 2 Dropdown -->
+                    <div class="flex items-center justify-between bg-blue-100 p-3 rounded cursor-pointer" onclick="toggleDropdown('content-container-2', 'dropdownIcon-2')">
+                        <span class="text-blue-700 font-medium">Group 2</span>
+                        <svg id="dropdownIcon-2" class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+
+                    <div id="content-container-2" class="bg-purple-100 rounded ">
+
+                        <!-- message Item -->
+                        <div class="flex items-center justify-between p-3">
+                                <!-- message Item -->
+                            <div class="flex items-center" onclick="openPopup()">
+                                <!-- message Thumbnail -->
+                                <div class="w-1/5 flex-shrink-0">
+                                    <img src="massage.jpg" alt="message Thumbnail" class="h-full w-full object-cover rounded">
+                                </div>
+
+                                <!-- message Info -->
+                                <div class="flex-grow pl-5">
+                                    <h3 class="text-md font-semibold">Message</h3>
+                                    <p class="text-sm text-gray-600">Check if you headset fits good</p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
+                        <!-- Video Item -->
+                        <div class="flex items-center justify-between p-3">
+                                <!-- Video Item -->
+                            <div class="flex items-center">
+                                <!-- Video Thumbnail -->
+                                <div class="w-1/5 flex-shrink-0">
+                                    <img src="play.jpg" alt="Video Thumbnail" class="h-full w-full object-cover rounded">
+                                </div>
+
+                                <!-- Video Info -->
+                                <div class="flex-grow pl-5">
+                                    <h3 class="text-md font-semibold break-words">Space_VR_3D_ENG.mp4</h3>
+                                    <p class="text-sm text-gray-600">Duration: 03:45</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- message Item -->
+                        <div class="flex items-center justify-between p-3">
+                            <!-- message Item -->
+                            <div class="flex items-center" onclick="openPopup()">
+                                <!-- message Thumbnail -->
+                                <div class="w-1/5 flex-shrink-0">
+                                    <img src="massage.jpg" alt="message Thumbnail" class="h-full w-full object-cover rounded">
+                                </div>
+
+                                <!-- message Info -->
+                                <div class="flex-grow pl-5">
+                                    <h3 class="text-md font-semibold">Message</h3>
+                                    <p class="text-sm text-gray-600">Put off your headset</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                </div>
             </div>
 
 
@@ -189,7 +259,7 @@
                         <!-- Dropdown or device selector here -->
                     </div>
     
-                    <div class="flex items-center justify-between  p-3 rounded ">
+                    <div class="flex items-center justify-between  p-3 rounded">
                         <div class="w-1/2 cursor-pointer" onclick="togglePlaybackMonitoring()">
                             <!-- Click to enable playback monitoring -->
                             <div class="flex items-center justify-center h-full hidden" id="toggleText">
@@ -204,6 +274,44 @@
                         </div>
                         <div class="w-1/2 pl-4">
                             <div class="font-bold break-words">Space_VR_3D_NL.mp4</div>
+                            <div class="text-sm">00:03 / 13:56</div>
+                            <!-- Video Seek Slider -->
+                            <input type="range" class="w-full" />
+                            <!-- Playback Controls -->
+                            <div class="flex mt-2">
+                                <button id="playButton" onclick="togglePlayPauseVideo()" class="bg-blue-500 text-white px-4 py-2 rounded hidden">Play</button>
+                                <button id="pauseButton" onclick="togglePlayPauseVideo()" class="bg-gray-500 text-white px-4 py-2 rounded">Pause</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Device Selection and Info -->
+                <div class="mb-6  bg-gray-200 rounded">
+                    <div class="flex justify-between items-center p-4">
+                        <div>
+                            <p class="font-bold">Group 2</p>
+                            <p class="text-green-500">Connected</p>
+                        </div>
+                        <!-- Dropdown or device selector here -->
+                    </div>
+    
+                    <div class="flex items-center justify-between  p-3 rounded ">
+                        <div class="w-1/2 cursor-pointer" onclick="togglePlaybackMonitoring()">
+                            <!-- Click to enable playback monitoring -->
+                            <div class="flex items-center justify-center h-full hidden" id="toggleText">
+                                <span class="text-gray-700 text-center">Click here to enable playback monitoring</span>
+                            </div>
+
+                            <!-- Video Thumbnail (hidden by default) -->
+                            <div class="flex items-center justify-center h-full " id="videoThumbnail">
+                                <img src="360-ex.png" alt="Video Thumbnail" class="h-full w-full object-cover rounded">
+                            </div>
+
+                        </div>
+                        <div class="w-1/2 pl-4">
+                            <div class="font-bold break-words">Space_VR_3D_ENG.mp4</div>
                             <div class="text-sm">00:03 / 13:56</div>
                             <!-- Video Seek Slider -->
                             <input type="range" class="w-full" />
@@ -290,9 +398,9 @@
         }
 
         // dropdown function for commands groups
-        function toggleDropdown() {
-            var content = document.getElementById('content-container');
-            var icon = document.getElementById('dropdownIcon');
+        function toggleDropdown(contentId, iconId) {
+            var content = document.getElementById(contentId);
+            var icon = document.getElementById(iconId);
 
             content.classList.toggle('hidden');
             
@@ -303,6 +411,8 @@
                 icon.classList.add('rotate-180');
             }
         }
+
+
 
 
 
