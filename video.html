@@ -106,63 +106,68 @@
                 </div>
                 <!-- Commands List -->
                 <div class="space-y-2" >
-                    <!-- Each start command block -->
-                    <div class="flex items-center justify-between bg-blue-100 p-3 rounded">
+                    <!-- Dropdown Header -->
+                    <div class="flex items-center justify-between bg-blue-100 p-3 rounded cursor-pointer" onclick="toggleDropdown()">
                         <span class="text-blue-700 font-medium">Group 1</span>
-                        <button class="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Play</button>
+                        <svg id="dropdownIcon" class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
                     </div>
 
-                    <!-- message Item -->
-                    <div class="flex items-center justify-between bg-purple-100 p-3 rounded">
-                            <!-- message Item -->
-                        <div class="flex items-center" onclick="openPopup()">
-                            <!-- message Thumbnail -->
-                            <div class="w-1/5 flex-shrink-0">
-                                <img src="massage.jpg" alt="message Thumbnail" class="h-full w-full object-cover rounded">
-                            </div>
-
-                            <!-- message Info -->
-                            <div class="flex-grow pl-5">
-                                <h3 class="text-md font-semibold">Message</h3>
-                                <p class="text-sm text-gray-600">Check if you headset fits good</p>
-                            </div>
-                        </div>
-                    </div>
-                
-                    
-                    <!-- Video Item -->
-                    <div class="flex items-center justify-between bg-purple-100 p-3 rounded">
-                            <!-- Video Item -->
-                        <div class="flex items-center">
-                            <!-- Video Thumbnail -->
-                            <div class="w-1/5 flex-shrink-0">
-                                <img src="play.jpg" alt="Video Thumbnail" class="h-full w-full object-cover rounded">
-                            </div>
-
-                            <!-- Video Info -->
-                            <div class="flex-grow pl-5">
-                                <h3 class="text-md font-semibold break-words">Space_VR_3D_NL.mp4</h3>
-                                <p class="text-sm text-gray-600">Duration: 03:45</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- message Item -->
-                    <div class="flex items-center justify-between bg-purple-100 p-3 rounded">
+                    <!-- Dropdown Content -->
+                    <div id="content-container" class="bg-purple-100 rounded hidden">
                         <!-- message Item -->
-                        <div class="flex items-center" onclick="openPopup()">
-                            <!-- message Thumbnail -->
-                            <div class="w-1/5 flex-shrink-0">
-                                <img src="massage.jpg" alt="message Thumbnail" class="h-full w-full object-cover rounded">
-                            </div>
+                        <div class="flex items-center justify-between p-3">
+                                <!-- message Item -->
+                            <div class="flex items-center" onclick="openPopup()">
+                                <!-- message Thumbnail -->
+                                <div class="w-1/5 flex-shrink-0">
+                                    <img src="massage.jpg" alt="message Thumbnail" class="h-full w-full object-cover rounded">
+                                </div>
 
-                            <!-- message Info -->
-                            <div class="flex-grow pl-5">
-                                <h3 class="text-md font-semibold">Message</h3>
-                                <p class="text-sm text-gray-600">Put off your headset</p>
+                                <!-- message Info -->
+                                <div class="flex-grow pl-5">
+                                    <h3 class="text-md font-semibold">Message</h3>
+                                    <p class="text-sm text-gray-600">Check if you headset fits good</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    
+                        
+                        <!-- Video Item -->
+                        <div class="flex items-center justify-between p-3">
+                                <!-- Video Item -->
+                            <div class="flex items-center">
+                                <!-- Video Thumbnail -->
+                                <div class="w-1/5 flex-shrink-0">
+                                    <img src="play.jpg" alt="Video Thumbnail" class="h-full w-full object-cover rounded">
+                                </div>
+
+                                <!-- Video Info -->
+                                <div class="flex-grow pl-5">
+                                    <h3 class="text-md font-semibold break-words">Space_VR_3D_NL.mp4</h3>
+                                    <p class="text-sm text-gray-600">Duration: 03:45</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- message Item -->
+                        <div class="flex items-center justify-between p-3">
+                            <!-- message Item -->
+                            <div class="flex items-center" onclick="openPopup()">
+                                <!-- message Thumbnail -->
+                                <div class="w-1/5 flex-shrink-0">
+                                    <img src="massage.jpg" alt="message Thumbnail" class="h-full w-full object-cover rounded">
+                                </div>
+
+                                <!-- message Info -->
+                                <div class="flex-grow pl-5">
+                                    <h3 class="text-md font-semibold">Message</h3>
+                                    <p class="text-sm text-gray-600">Put off your headset</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
                 </div>
             </div>
 
@@ -175,7 +180,7 @@
                     <button class="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Play All</button>
                 </div>
                 <!-- Device Selection and Info -->
-                <div class="mb-6  bg-gray-50 rounded">
+                <div class="mb-6  bg-gray-200 rounded">
                     <div class="flex justify-between items-center p-4">
                         <div>
                             <p class="font-bold">Group 1</p>
@@ -184,7 +189,7 @@
                         <!-- Dropdown or device selector here -->
                     </div>
     
-                    <div class="flex items-center justify-between bg-blue-100 p-3 rounded ">
+                    <div class="flex items-center justify-between  p-3 rounded ">
                         <div class="w-1/2 cursor-pointer" onclick="togglePlaybackMonitoring()">
                             <!-- Click to enable playback monitoring -->
                             <div class="flex items-center justify-center h-full hidden" id="toggleText">
@@ -203,9 +208,9 @@
                             <!-- Video Seek Slider -->
                             <input type="range" class="w-full" />
                             <!-- Playback Controls -->
-                            <div class="flex space-x-2 mt-2">
-                                <button onclick="playVideo()" class="bg-blue-500 text-white px-4 py-2 rounded">Play</button>
-                                <button onclick="pauseVideo()" class="bg-gray-500 text-white px-4 py-2 rounded">Pause</button>
+                            <div class="flex mt-2">
+                                <button id="playButton" onclick="togglePlayPauseVideo()" class="bg-blue-500 text-white px-4 py-2 rounded hidden">Play</button>
+                                <button id="pauseButton" onclick="togglePlayPauseVideo()" class="bg-gray-500 text-white px-4 py-2 rounded">Pause</button>
                             </div>
                         </div>
                     </div>
@@ -254,7 +259,7 @@
             button.addEventListener('click', closePopup);
         });
     
-
+        // toggle function for videothumbnail
         function togglePlaybackMonitoring() {
             var textDiv = document.getElementById('toggleText');
             var thumbnailDiv = document.getElementById('videoThumbnail');
@@ -269,6 +274,108 @@
             }
         }
 
+        // toggle function for play/ pause button
+        function togglePlayPauseVideo() {
+            var playvideo = document.getElementById('playButton');
+            var pausevideo = document.getElementById('pauseButton');
+
+            // Check if the text div is currently shown
+            if (playvideo.classList.contains('hidden')) {
+                playvideo.classList.remove('hidden');
+                pausevideo.classList.add('hidden');
+            } else {
+                playvideo.classList.add('hidden');
+                pausevideo.classList.remove('hidden');
+            }
+        }
+
+        // dropdown function for commands groups
+        function toggleDropdown() {
+            var content = document.getElementById('content-container');
+            var icon = document.getElementById('dropdownIcon');
+
+            content.classList.toggle('hidden');
+            
+            // Toggle icon from down arrow to up arrow
+            if (icon.classList.contains('rotate-180')) {
+                icon.classList.remove('rotate-180');
+            } else {
+                icon.classList.add('rotate-180');
+            }
+        }
+
+
+
+    </script>
+    <script>
+         // Burger menus
+    document.addEventListener('DOMContentLoaded', function() {
+        // open
+        const burger = document.querySelectorAll('.navbar-burger');
+        const menu = document.querySelectorAll('.navbar-menu');
+    
+        if (burger.length && menu.length) {
+            for (var i = 0; i < burger.length; i++) {
+                burger[i].addEventListener('click', function() {
+                    for (var j = 0; j < menu.length; j++) {
+                        menu[j].classList.toggle('hidden');
+                    }
+                });
+            }
+        }
+    
+        // close
+        const close = document.querySelectorAll('.navbar-close');
+        const backdrop = document.querySelectorAll('.navbar-backdrop');
+    
+        if (close.length) {
+            for (var i = 0; i < close.length; i++) {
+                close[i].addEventListener('click', function() {
+                    for (var j = 0; j < menu.length; j++) {
+                        menu[j].classList.toggle('hidden');
+                    }
+                });
+            }
+        }
+    
+        if (backdrop.length) {
+            for (var i = 0; i < backdrop.length; i++) {
+                backdrop[i].addEventListener('click', function() {
+                    for (var j = 0; j < menu.length; j++) {
+                        menu[j].classList.toggle('hidden');
+                    }
+                });
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (event) => {
+                // Close any open dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu !== event.target.nextElementSibling) {
+                        menu.classList.add('hidden');
+                    }
+                });
+
+                // Toggle the clicked dropdown
+                const dropdownMenu = event.target.nextElementSibling || event.target.parentElement.nextElementSibling;
+                dropdownMenu.classList.toggle('hidden');
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        window.addEventListener('click', (event) => {
+            if (!event.target.matches('.dropdown-toggle')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.add('hidden');
+                });
+            }
+        }, true);
+    });
     </script>
     
 </body>
