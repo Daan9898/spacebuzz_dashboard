@@ -135,27 +135,28 @@
                                 <div draggable="true" ondragstart="drag(event)" id="device3" class="device bg-gray-100 p-2 rounded cursor-move">
                                     Chair 3
                                 </div>
+                                <div draggable="true" ondragstart="drag(event)" id="device4" class="device bg-gray-100 p-2 rounded cursor-move">
+                                    Chair 4
+                                </div>
+                                <div draggable="true" ondragstart="drag(event)" id="device5" class="device bg-gray-100 p-2 rounded cursor-move">
+                                    Chair 5
+                                </div>
                                 <!-- Repeat for other devices -->
                             </div>
                         </div>
                 
-                        <!-- Group 1 -->
-                        <div class="group" id="group1" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <h2 class="font-semibold text-lg mb-2">Group 1</h2>
-                            <!-- List of Devices in Group 1 -->
-                            <div class="devices flex flex-col gap-2 p-2">
-                                <!-- Devices will be dropped here -->
-                            </div>
+                        <div id="groupsContainer">
+                            <!-- Group 1 -->
+                            <div class="group" id="group1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <h2 class="font-semibold text-lg mb-2">Group 1</h2>
+                                <!-- List of Devices in Group 1 -->
+                                <div class="devices flex flex-col gap-4 p-2">
+                                    <!-- Devices will be dropped here -->
+                                </div>
+                            </div>  
                         </div>
+                        
 
-                        <!-- Group 2 -->
-                        <div class="group" id="group2" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <h2 class="font-semibold text-lg mb-2">Group 2</h2>
-                            <!-- List of Devices in Group 1 -->
-                            <div class="devices flex flex-col gap-2 p-2">
-                                <!-- Devices will be dropped here -->
-                            </div>
-                        </div>
                 
                     </div>
                 </div>
@@ -538,56 +539,81 @@
             }
             }
 
-            // Function to select/deselect all devices
-            function selectAllDevices() {
-                var selectAllCheckbox = document.getElementById('selectAll');
-                var deviceCheckboxes = document.querySelectorAll('.device-checkbox');
-                deviceCheckboxes.forEach(function(checkbox) {
-                    checkbox.checked = selectAllCheckbox.checked;
-                });
-            }
 
-            function allowDrop(event) {
+        function allowDrop(event) {
             event.preventDefault();
         }
 
-        // Function to handle the drop event
         function handleDrop(event, group) {
-        event.preventDefault();
-        var data = event.dataTransfer.getData("text/plain");
-        var device = document.getElementById(data);
-        group.appendChild(device);
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text/plain");
+            var device = document.getElementById(data);
+            group.appendChild(device);
         }
 
-        // Add event listeners to groups and devices
-        document.querySelectorAll('.group').forEach(group => {
-        group.addEventListener('dragover', function(event) {
-            event.preventDefault(); // Allow the drop by preventing default
-            group.classList.add('drag-over');
-        });
+        function addEventListenersToGroup(group) {
+            group.addEventListener('dragover', function(event) {
+                event.preventDefault(); // Allow the drop
+                group.classList.add('drag-over');
+            });
 
-        group.addEventListener('dragleave', function(event) {
-            group.classList.remove('drag-over');
-        });
+            group.addEventListener('dragleave', function(event) {
+                group.classList.remove('drag-over');
+            });
 
-        group.addEventListener('drop', function(event) {
-            group.classList.remove('drag-over');
-            handleDrop(event, group.querySelector('.devices'));
-        });
-        });
+            group.addEventListener('drop', function(event) {
+                group.classList.remove('drag-over');
+                handleDrop(event, group.querySelector('.devices'));
+            });
+        }
 
-        document.querySelectorAll('.device').forEach(device => {
-        device.addEventListener('dragstart', function(event) {
-            event.dataTransfer.setData("text/plain", event.target.id);
-            // Optionally, add some visual indication like changing the opacity
-            event.target.style.opacity = '0.5';
-        });
+        function addEventListenersToDevice(device) {
+            device.addEventListener('dragstart', function(event) {
+                event.dataTransfer.setData("text/plain", event.target.id);
+                event.target.style.opacity = '0.5';
+            });
 
-        device.addEventListener('dragend', function(event) {
-            // Reset any temporary styles like opacity
-            event.target.style.opacity = '1';
-        });
-        });
+            device.addEventListener('dragend', function(event) {
+                event.target.style.opacity = '1';
+            });
+        }
+
+        // Initialize event listeners for existing groups and devices
+        document.querySelectorAll('.group').forEach(addEventListenersToGroup);
+        document.querySelectorAll('.device').forEach(addEventListenersToDevice);
+
+        var groupCount = 1; // Start from 1 if you already have a group with id "group1"
+
+        function addGroup() {
+            groupCount++;
+
+            var newGroup = document.createElement('div');
+            newGroup.className = 'group';
+            newGroup.id = 'group' + groupCount;
+
+            var groupTitle = document.createElement('h2');
+            groupTitle.className = 'font-semibold text-lg mb-2';
+            groupTitle.textContent = 'Group ' + groupCount;
+            newGroup.appendChild(groupTitle);
+
+            var devicesContainer = document.createElement('div');
+            devicesContainer.className = 'devices flex flex-col gap-4 p-2';
+            newGroup.appendChild(devicesContainer);
+
+            document.getElementById('groupsContainer').appendChild(newGroup);
+
+            // Add event listeners to the new group and its devices
+            addEventListenersToGroup(newGroup);
+        }
+
+        // Function to drop (this is for the new groups)
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            event.target.appendChild(document.getElementById(data));
+        }
+
+
 
 
     </script>
