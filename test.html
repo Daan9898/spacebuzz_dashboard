@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+            <!-- Overlay and Pop-up message (hidden by default) -->
+            <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden" id="popupOverlay">
+                <div class="bg-white rounded-lg shadow-lg p-8 w-96">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold">Message</h2>
+                        <button class="closePopup">&times;</button>
+                    </div>
+                
+                    <div class="mb-6">
+                        <label for="support" class="font-semibold mb-2 block">What do you want to say?</label>
+                        <textarea id="support" placeholder="Type your message here..." class="border rounded px-4 py-2 w-full h-24"></textarea>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button class="border rounded px-4 py-2 text-gray-600 closePopup">Cancel</button>
+                        <button class="bg-blue-500 text-white rounded px-4 py-2">Submit</button>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>
