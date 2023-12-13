@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <title>Video Streaming</title>
+    <style>
+      body {
+        max-width: 100%;
+        height: 100vh;
+        background-color: rgb(14, 14, 14);
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+
+
+
+    <a-scene>
+      <a-assets>
+          <video id="video360" src="spacebuzz.mp4"  controls width="8192" height="4096" crossorigin="anonymous"></video>
+      </a-assets>
+        <a-videosphere src="#video360"></a-videosphere>
+    </a-scene>
+  
+
+    <script>
+const ws = new WebSocket('ws://localhost:5500/');
+
+ws.onopen = () => {
+  console.log('WebSocket connection established.');
+};
+
+const videoPlayer = document.getElementById('video360');
+
+ws.onmessage = (event) => {
+  const command = event.data;  
+  console.log(`Received command: ${command}`);
+  if (command === 'play') {
+    videoPlayer.play();
+  } else if (command === 'pause') {
+    videoPlayer.pause();
+  } else if (command.startsWith('seek:')) {
+    const time = parseFloat(command.split(':')[1]);
+    videoPlayer.currentTime = time;
+  }
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Get references to the video element and the button
+  const video = document.querySelector("video");
+  const startPlaybackButton = document.getElementById("startPlaybackButton");
+
+  // Add a click event listener to the button
+  startPlaybackButton.addEventListener("click", function () {
+    // Fetch the video stream URL from your Express.js server with the Range header
+    fetch("/video-stream", {
+      headers: {
+        Range: "bytes=0-",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.blob();
+      })
+      .then((videoBlob) => {
+        // Create a Blob URL for the video stream
+        const videoBlobUrl = URL.createObjectURL(videoBlob);
+
+        // Set the video source to the Blob URL
+        video.src = videoBlobUrl;
+
+        // Play the video
+        video.play();
+      })
+      .catch((error) => {
+        console.error("Error fetching video stream:", error);
+      });
+  });
+});
+
+    </script>
+  </body>
+</html>
