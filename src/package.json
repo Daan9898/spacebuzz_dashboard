@@ -1,0 +1,26 @@
+{
+  "name": "spacebuzz_dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daan9898/spacebuzz_dashboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daan9898/spacebuzz_dashboard/issues"
+  },
+  "homepage": "https://github.com/Daan9898/spacebuzz_dashboard#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-ws": "^5.0.2",
+    "multer": "^1.4.5-lts.1",
+    "node-media-server": "^2.6.2",
+    "ws": "^8.14.2"
+  }
+}
