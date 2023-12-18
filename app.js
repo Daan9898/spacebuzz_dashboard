@@ -2,16 +2,27 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const fs = require("fs");
+// const https = require('https');
 const expressWs = require('express-ws'); // Import express-ws
 const WebSocket = require('ws');
 
-// Create express app
+
 
 const app = express();
 const port = 5500;
 
+// // Read the certificate and key files
+// const privateKey = fs.readFileSync('./certs/private.key', 'utf8');
+// const certificate = fs.readFileSync('./certs/certificate.crt', 'utf8');
+
+// const credentials = { key: privateKey, cert: certificate };
+// const httpsServer = https.createServer(credentials, app);
+
 // Use CORS middleware
 app.use(cors());
+
+
+
 
 
 // Database connection
@@ -192,6 +203,15 @@ app.get("/video", (req, res) => {
 
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
-});
+// app.listen(port, () => {
+//     console.log(`Server running at http://localhost:${port}/`);
+// });
+
+app.listen(5500, '0.0.0.0', () => {
+    console.log('Server running on port 5500');
+  });
+  
+//   httpsServer.listen(5500, '0.0.0.0', () => {
+//     console.log('HTTPS Server running on port 5500');
+//   });
+  

@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://threejs.org/build/three.js"></script>
+
     <title>Video Streaming</title>
     <style>
       body {
@@ -24,32 +26,32 @@
 
     <a-scene>
       <a-assets>
-          <video id="video360" src="360video.mp4"  controls width="8192" height="4096" crossorigin="anonymous"></video>
+          <video id="video360" src="small360.mp4"  controls width="8192" height="4096" crossorigin="anonymous"></video>
       </a-assets>
         <a-videosphere src="#video360"></a-videosphere>
     </a-scene>
   
 
     <script>
-const ws = new WebSocket('ws://localhost:5500/');
+const ws = new WebSocket('ws://192.168.1.103:5500/');
 
 ws.onopen = () => {
-  console.log('WebSocket connection established.');
+    console.log('WebSocket connection established.');
 };
 
 const videoPlayer = document.getElementById('video360');
 
 ws.onmessage = (event) => {
-  const command = event.data;  
-  console.log(`Received command: ${command}`);
-  if (command === 'play') {
-    videoPlayer.play();
-  } else if (command === 'pause') {
-    videoPlayer.pause();
-  } else if (command.startsWith('seek:')) {
-    const time = parseFloat(command.split(':')[1]);
-    videoPlayer.currentTime = time;
-  }
+    const command = event.data;  
+    console.log(`Received command: ${command}`);
+    if (command === 'play') {
+        videoPlayer.play();
+    } else if (command === 'pause') {
+        videoPlayer.pause();
+    } else if (command.startsWith('seek:')) {
+        const time = parseFloat(command.split(':')[1]);
+        videoPlayer.currentTime = time;
+    }
 };
 
 

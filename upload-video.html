@@ -97,33 +97,34 @@
 
 </body>
 <script>
-    const ws = new WebSocket('ws://localhost:5500/'); 
+const ws = new WebSocket('ws://192.168.1.103:5500/');
     
-    ws.onopen = () => {
-        console.log('WebSocket connection established.');
-        
-        // Add your message-sending code here
-        const playButton = document.getElementById('playButton');
-        const pauseButton = document.getElementById('pauseButton');
-        const seekButton = document.getElementById('seekButton');
-    
-        playButton.addEventListener('click', () => {
-            ws.send('play');
-            document.getElementById('videoPlayer').play();
-        });
-        
-        pauseButton.addEventListener('click', () => {
-            ws.send('pause');
-        });
-        
-        seekButton.addEventListener('click', () => {
-            ws.send('seek:30'); // You can customize this command
-        });
-    };
-    
-        ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
-        };
+
+ws.onopen = () => {
+    console.log('WebSocket connection established.');
+
+    // Add your message-sending code here
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+    const seekButton = document.getElementById('seekButton');
+
+    playButton.addEventListener('click', () => {
+        ws.send('play');
+    });
+
+    pauseButton.addEventListener('click', () => {
+        ws.send('pause');
+    });
+
+    seekButton.addEventListener('click', () => {
+        ws.send('seek:30'); // You can customize this command
+    });
+};
+
+ws.onerror = (error) => {
+    console.error('WebSocket error:', error);
+};
+
     </script>
     
 
